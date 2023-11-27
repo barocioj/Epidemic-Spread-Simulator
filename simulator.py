@@ -20,11 +20,11 @@ def plot_graph(G, day):
     node_colors = {'S': 'blue', 'I': 'red', 'R': 'green', 'E': 'purple', 'V': 'yellow'}
     colors = [node_colors.get(G.nodes[node]['state'], 'white') for node in G.nodes()]
 
-    # Drawing nodes and edges separately to customize their appearance
+    # drawing nodes and edges 
     nx.draw_networkx_nodes(G, pos, node_size=200, node_color=colors)
     nx.draw_networkx_edges(G, pos, width=0.5)
 
-    # Create a legend
+    # labels
     legend_labels = {'Susceptible': 'blue', 'Infected': 'red', 'Recovered': 'green', 'Exposed': 'purple', 'Vaccinated': 'yellow'}
     legend_handles = [plt.Line2D([0], [0], marker='o', color=color, label=label, markersize=8, linestyle='None') for label, color in legend_labels.items()]
     plt.legend(handles=legend_handles, loc='upper right')
@@ -59,9 +59,8 @@ def simulate_epidemic(nodes, edges, beta, gamma, sigma, vaccination_prob, days):
         current_day += 1
         time.sleep(0.5)
 
-# Interactive widgets
+#sliders
 style = {'description_width': 'initial'}
-
 nodes_slider = widgets.IntSlider(value=50, min=10, max=100, step=5, description='Nodes:', style=style)
 edges_slider = widgets.IntSlider(value=80, min=10, max=150, step=5, description='Edges:', style=style)
 beta_slider = widgets.FloatSlider(value=0.3, min=0.1, max=0.5, step=0.05, description='Infection Rate:', style=style)
